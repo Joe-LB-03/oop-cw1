@@ -161,10 +161,10 @@ public class Track
             {
                 myWriter.write(String.format("%f,%f,%f\n",points.get(i).getLongitude(),points.get(i).getLatitude(),points.get(i).getElevation()));
             }
-            myWriter.write("        </coordinates>");
-            myWriter.write("      </LineString>");
-            myWriter.write("    </Placemark>");
-            myWriter.write("  </Document>");
+            myWriter.write("        </coordinates>\n");
+            myWriter.write("      </LineString>\n");
+            myWriter.write("    </Placemark>\n");
+            myWriter.write("  </Document>\n");
             myWriter.write("</kml>");
             myWriter.close();
 

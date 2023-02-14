@@ -208,4 +208,8 @@
 -1.552659,53.805383,73.400000
 -1.552804,53.805443,73.400000
 -1.552940,53.805493,73.200000
-        </coordinates>      </LineString>    </Placemark>  </Document></kml>
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
