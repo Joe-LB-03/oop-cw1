@@ -121,7 +121,7 @@ public class Track
     {
         try 
         {
-            File myFile = new File("path.kml");
+            File myFile = new File(fileName);
             if (myFile.createNewFile()) 
             {
                 System.out.println("File created: " + myFile.getName());
@@ -138,7 +138,7 @@ public class Track
 
         try
         {
-            FileWriter myWriter = new FileWriter("path.kml");
+            FileWriter myWriter = new FileWriter(fileName);
 
             myWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
             myWriter.write("<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n");
