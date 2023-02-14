@@ -116,4 +116,62 @@ public class Track
         double totalTime = ChronoUnit.SECONDS.between(points.get(0).getTime(),points.get(points.size() - 1).getTime());
         return totalDistance/totalTime;
     }
+
+    public void writeKML(String fileName)
+    {
+        try 
+        {
+            File myFile = new File("path.kml");
+            if (myFile.createNewFile()) 
+            {
+                System.out.println("File created: " + myFile.getName());
+            }  
+            else 
+            {
+                System.out.println("File already exists.");
+            }
+        }   catch   (IOException e) 
+        {
+            System.err.println("An error occurred creating the file.");
+            System.exit(0);
+        }
+
+        try
+        {
+            FileWriter myWriter = new FileWriter("path.kml");
+
+            myWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            myWriter.write("<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n");
+            myWriter.write("  <Document>\n");
+            myWriter.write("    <Style id=\"yellowLineGreenPoly\">\n");
+            myWriter.write("      <LineStyle>\n");
+            myWriter.write("        <color>7f00ffff</color>\n");
+            myWriter.write("        <width>4</width>\n");
+            myWriter.write("      </LineStyle>\n");
+            myWriter.write("      <PolyStyle>\n");
+            myWriter.write("        <color>7f00ff00</color>\n");
+            myWriter.write("      </PolyStyle>\n");
+            myWriter.write("    </Style>\n");
+            myWriter.write("    <Placemark>\n");
+            myWriter.write("      <styleUrl>#yellowLineGreenPoly</styleUrl>\n");
+            myWriter.write("      <LineString>\n");
+            myWriter.write("        <altitudeMode>absolute</altitudeMode>\n");
+            myWriter.write("        <coordinates> ");
+            for(int i = 0; i < points.size(); i++)
+            {
+                myWriter.write(String.format("%f,%f,%f\n",points.get(i).getLongitude(),points.get(i).getLatitude(),points.get(i).getElevation()));
+            }
+            myWriter.write("        </coordinates>");
+            myWriter.write("      </LineString>");
+            myWriter.write("    </Placemark>");
+            myWriter.write("  </Document>");
+            myWriter.write("</kml>");
+            myWriter.close();
+
+        }   catch   (IOException e) 
+        {
+            System.out.println("An error occurred writing to the file.");
+            System.exit(0);
+        }
+    }
 }
