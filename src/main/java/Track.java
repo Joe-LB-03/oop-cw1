@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 /**
- * Represents a point in space and time, recorded by a GPS sensor.
+ * Represents a seqeuence of points in space and time, recorded by a GPS sensor.
  *
  * @author Louis Bishop
  */
@@ -117,6 +117,7 @@ public class Track
         return totalDistance/totalTime;
     }
 
+    //Method to parse the dataset as a KML file for use with google maps/earth
     public void writeKML(String fileName)
     {
         try 

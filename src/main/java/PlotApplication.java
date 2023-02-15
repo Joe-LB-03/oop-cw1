@@ -10,28 +10,27 @@ import java.io.*;
  * JavaFX application to plot elevations of a GPS track, for
  * the Advanced task of COMP1721 Coursework 1.
  *
- * @author Louis
+ * @author Louis Bishop
  */
 public class PlotApplication extends Application 
 {
+    //Member variables
     protected static Track track;
 
+    //Methods
     @Override public void start(Stage stage) 
     {
         stage.setTitle("Elevation Plot");
-        //defining the axes
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Point");
         yAxis.setLabel("Elevation");
-        //creating the chart
         final LineChart<Number,Number> lineChart =  new LineChart<Number,Number>(xAxis,yAxis);
         lineChart.setTitle("Elevation as a function of distance.");
-        //defining a series
         XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
         series.setName("Datapoints");
-        //populating the series with data
         double distance = 0;
+
         for(int i = 0; i < track.size(); i++)
         {
             series.getData().add(new XYChart.Data<Number,Number>(distance, track.get(i).getElevation()));
@@ -41,10 +40,9 @@ public class PlotApplication extends Application
             }
         }
         
-        
         Scene scene  = new Scene(lineChart,800,600);
         lineChart.getData().add(series);
-       
+
         stage.setScene(scene);
         stage.show();
     }
