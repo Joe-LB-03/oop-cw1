@@ -28,16 +28,16 @@ public class PlotApplication extends Application
         final LineChart<Number,Number> lineChart =  new LineChart<Number,Number>(xAxis,yAxis);
         lineChart.setTitle("Elevation as a function of distance.");
         //defining a series
-        XYChart.Series series = new XYChart.Series();
-        series.setName("Track data");
+        XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
+        series.setName("Datapoints");
         //populating the series with data
         double distance = 0;
         for(int i = 0; i < track.size(); i++)
         {
-            series.getData().add(new XYChart.Data(distance, track.get(i).getElevation()));
+            series.getData().add(new XYChart.Data<Number,Number>(distance, track.get(i).getElevation()));
             if(i != track.size() - 1)
             {
-                distance = distance + track.get(i).greatCircleDistance(track.get(i), track.get(i+1));
+                distance = distance + Point.greatCircleDistance(track.get(i), track.get(i+1));
             }
         }
         
