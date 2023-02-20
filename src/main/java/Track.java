@@ -22,9 +22,34 @@ public class Track
         
     }
 
+    public Track(String fileName) throws IOException
+    {
+        points = new ArrayList<Point>();
+
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        scanner.nextLine();
+        while(scanner.hasNextLine())
+        {
+            String[] line = scanner.nextLine().split(",");
+            if(line.length != 4)
+            {
+                scanner.close();
+                throw new GPSException("Invalid CSV arguments.");
+            }
+            else
+            {
+                Point point = new Point(ZonedDateTime.parse(line[0]),Double.parseDouble(line[1]),Double.parseDouble(line[2]),Double.parseDouble(line[3]));
+                points.add(point);
+            }
+        }
+        scanner.close();
+
+    }
+
     public void readFile(String fileName) throws IOException
     {
-        this.points= new ArrayList<Point>();
+        points= new ArrayList<Point>();
 
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);

@@ -15,10 +15,9 @@ public class TrackInfo
             System.exit(0);
         }
 
-        Track track = new Track();
         try 
         {
-            track.readFile(args[0]);
+            Track track = new Track(args[0]);
             printTrackInfo(track);
         }   catch   (IOException e) 
         {
